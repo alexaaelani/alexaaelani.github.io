@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Pagina 4: Pixel Art</title>
+  <style>
+    body{
+      text-align: center;
+    }
+      canvas{
+          border: 3px solid brown;
+          background-color: rgb(255, 255, 255);
+      }
+  </style>
+
+<script>
+    //window.onload=function(){}
+    var x = 0;
+    var y = 0;
+    var dx = 5;
+    var dy = 3;
+    function animate(){
+        requestAnimationFrame(animate);
+        console.log('animando');
+        var canvas = document.getElementById("micanvas");
+        var context = canvas.getContext("2d");
+        context.clearRect(0,0, innerWidth, innerHeight);//borra lo que esta
+
+        context.fillStyle="rgba(119, 221, 119)";//1
+        context.fillRect(x+300,y+250,150,100);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//2
+        context.fillRect(x+280,y+250,20,120);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//3
+        context.fillRect(x+300,y+230,150,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//4
+        context.fillRect(x+450,y+250,20,100);//x,y, ancho,alto
+
+        context.fillStyle="rgba(119, 221, 119)";//10
+        context.fillRect(x+300,y+350,95,40);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//5
+        context.fillRect(x+395,y+350,55,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//6
+        context.fillRect(x+395,y+370,20,40);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//14
+        context.fillRect(x+260,y+370,20,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(154, 205, 50)"//12
+        context.fillRect(x+280,y+370,20,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(154, 205, 50)"//sombra
+        context.fillRect(x+300,y+250,20,160);//x,y, ancho,alto
+
+        context.fillStyle="rgb(154, 205, 50)"//13
+        context.fillRect(x+260,y+350,20,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//16
+        context.fillRect(x+280,y+410,40,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//15
+        context.fillRect(x+280,y+390,20,60);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//7
+        context.fillRect(x+320,y+390,75,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//9
+        context.fillRect(x+375,y+410,20,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)";//8
+        context.fillRect(x+355,y+410,20,40);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64,64,64)"//19
+        context.fillRect(x+240,y+330,20,40);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64,64,64)"//18
+        context.fillRect(x+260,y+330,20,20);//x,y, ancho,alto
+
+        context.fillStyle="rgb(173, 255, 47)";//Pancita amarilla
+        context.fillRect(x+340,y+350,55,40);//x,y, ancho,alto
+
+        context.fillStyle="rgb(64, 64, 64)"//Ojo
+        context.fillRect(x+320,y+270,35,35);//x,y, ancho,alto
+
+      
+
+
+        if (x +450>800  || x +240<0)
+        {
+          dx = -dx;
+        }
+        if (y + 410>500|| y +230< 0)
+        {
+          dy = -dy;
+        }
+        x+= dx;
+        y+= dy;
+    }
+    animate();
+</script>
+
+  </head>
+<body>
+   <canvas id="micanvas" width="800" height="550"></canvas>
+</body>
+</html>
