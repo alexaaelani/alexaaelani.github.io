@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rotate to Mouse</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="canvas" width="1500" height="650"></canvas>
+    <aside>Move mouse on canvas element.</aside>
+    
+    <script src="utils.js"></script>
+    <script src="./classes/arrow.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          mouse = utils.captureMouse(canvas),
+          pelota = new Image ();
+          pelota.src = "Naranjita.jpg"; 
+          pelota2 = new Image ();
+          pelota2.src = "Fresita.jpg"; 
+        
+        
+      (function drawFrame () {
+        window.requestAnimationFrame(drawFrame, canvas);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        //Para Naranita
+        
+        context.save();
+
+        var x1 = canvas.width*3/8; //posicionar Naranjita
+        var y1 = canvas.height/2;
+        
+        context.translate(x1,y1);//coordenadas para la img
+        var dx1 = mouse.x - x1,
+            dy1 = mouse.y - y1;
+          
+        var radianes1 = Math.atan2(dy1,dx1);//radians
+
+        console.log(radianes1);
+        context.rotate(radianes1);
+        context.drawImage(pelota, -75, -75, 135, 158.25);// tamaño
+        context.restore();
+
+         context.save();
+        var x2 = (canvas.width*9/16); // Fresita
+        var y2 = canvas.height/2;
+        context.translate(x2, y2);//coordenadas para la img
+        var dx2 = mouse.x - x2,
+            dy2 = mouse.y - y2;
+
+        var radianes2 = Math.atan2(dy2, dx2);//radians
+
+         console.log(radianes2);
+        context.rotate(radianes2);
+        context.drawImage(pelota2, -67.5, -98.75, 135, 197.5);//tamaño
+        context.restore();
+      }());
+    };
+
+    </script>
+  </body>
+
+</html>
