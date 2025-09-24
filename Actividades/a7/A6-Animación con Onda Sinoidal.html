@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Photo</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="canvas" width="1300" height="650"></canvas>
+    
+    <script src="utils.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          ball = new Image ();
+          ball.src="Estrellitas.png";
+          angle = 10,
+          centerScale = 0,
+          centerX = canvas.width *4/12,
+          centerY = canvas.height*1/12,
+          radius = 100,
+          range = 0.15,
+          speed = 0.095;
+
+       ball.onload = function () {
+        (function drawFrame () {
+          window.requestAnimationFrame(drawFrame, canvas);
+          context.clearRect(0, 0, canvas.width, canvas.height);
+          context.save();
+          context.translate(0, 200);
+          
+          // tamano
+          scale = centerScale + Math.sin(angle) * range;
+          
+          // Posicion
+          x = centerX + Math.sin(angle) * radius;
+          y = centerY + Math.cos(angle) * radius;
+         
+          angle += speed;
+
+          // Dibujar imagen con escala
+          newW = ball.width * scale;
+          newH = ball.height * scale;
+          context.drawImage(ball, x - newW/2, y - newH/2, newW, newH);
+
+          context.restore();
+
+          context.font = "Bold 30pt Helvetica";
+          context.fillStyle = "yellow";
+          context.fillText("JUST TAKE A PHOTO!", 150, 500); // (x, y) posss
+        }());
+      };
+    };
+    </script>
+  </body>
+</html>
