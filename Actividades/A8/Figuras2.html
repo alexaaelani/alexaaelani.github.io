@@ -1,0 +1,356 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="canvas" width="950" height="600"></canvas>
+    <script>
+    window.onload = function () {
+      //Our code here...
+
+      
+    var canvas = document.getElementById ('canvas'),
+        context = canvas.getContext('2d');
+
+         var centerX = canvas.width / 2,
+        centerY = canvas.height / 2,
+        radius = Math.max(canvas.width, canvas.height) / 1.5,
+        gradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+
+        // Colorsss
+        gradient.addColorStop(0, "#e0f0ff"); 
+        gradient.addColorStop(0.3, "#b3d9ff"); 
+        gradient.addColorStop(0.6, "#80bfff"); 
+        gradient.addColorStop(1, "#5a99cc"); 
+
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+
+    //CASA  
+
+    //      PISO
+    context.save();
+    context.lineWidth = 6;
+    context.strokeStyle = 'black';
+    context.fillStyle='#BEE37E';
+    context.beginPath();
+        
+    context.moveTo (300,480); // posiciona el lugar de empiezo
+    context.lineTo(300,455); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(620,455);
+    context.lineTo(620,480);
+    
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //      CASA PARED
+    context.save();
+    context.lineWidth = 6;
+    context.strokeStyle = 'black';
+    context.fillStyle='#f7f8fb';
+    context.beginPath();
+        
+    context.moveTo (345,455); // posiciona el lugar de empiezo
+    context.lineTo(345,330); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(457.5,230);
+    context.lineTo(570,330);
+    context.lineTo(570,455);
+    
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //   PUERTA
+    context.save();
+    context.lineWidth = 4.5;
+    context.strokeStyle = 'black';
+    context.fillStyle = '#b87f6d';
+    
+    context.beginPath();
+    context.fillRect(475, 354, 60, 100);
+    context.closePath();
+    context.strokeRect(475, 354, 60, 100);
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //   VENTANA
+    context.save();
+    context.lineWidth = 4.5;
+    context.strokeStyle = 'black';
+    context.fillStyle = '#7EC8E3';
+    
+    context.beginPath();
+    context.fillRect(380, 335, 70, 70);  // Empieza en (380,335), mide 80 px de ancho y 80 px de alto.
+    context.closePath();
+    context.strokeRect(380, 335, 70, 70);
+    context.fill();
+    context.stroke();
+    context.restore();
+
+     //      LINEAS VENTANA
+    context.save();
+    context.lineWidth = 4.5;
+    context.strokeStyle = 'black';
+   
+    context.beginPath();
+        
+    context.moveTo (415, 335); // posiciona el lugar de empiezo
+    context.lineTo(415,405); //dibuja la linea desde el lugar de empiezo
+   
+    context.moveTo (380, 370); // posiciona el lugar de empiezo
+    context.lineTo(450,370); //dibuja la linea desde el lugar de empiezo
+
+    context.stroke();
+    context.restore();
+
+     //      SobreTecho
+    context.save();
+    context.lineWidth = 6;
+    context.strokeStyle = 'black';
+    context.fillStyle='#f0523f';
+    context.beginPath();
+        
+    context.moveTo (331.81, 341.73); // posiciona el lugar de empiezo
+    context.lineTo(345,330); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(457.5,230);
+    context.lineTo(570,330);
+    context.lineTo(584.89, 343.23);
+    context.lineTo(607, 315.1);
+    context.lineTo(457.5, 189.31);
+    context.lineTo(310, 315);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+     //      Chimenea
+    context.save();
+    context.lineWidth = 6;
+    context.strokeStyle = 'black';
+    context.fillStyle='#b87f6d';
+    context.beginPath();
+        
+    context.moveTo (360.41, 272.04); // posiciona el lugar de empiezo
+    context.lineTo(360.41, 193); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(407.51, 193);
+    context.lineTo(407.51, 231.91);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //      Hongo Base
+    context.save();
+    context.lineWidth = 4;
+    context.strokeStyle = 'black';
+    context.fillStyle='#b87f6d';
+    context.beginPath();
+        
+    context.moveTo (603, 455); // posiciona el lugar de empiezo
+    context.lineTo(603, 430.5); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(621, 430.5);
+    context.lineTo(621, 455);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+    
+     //Figura curva hongo
+    context. save();
+    context. fillStyle = '#f0523f';
+    context. strokeStyle = 'Black';
+    context. lineWidth = 7;
+    context.beginPath();
+    context.arc(611, 430.5, 29, Math.PI, 0); //centro del circulo (x=150, y=300) 29: radio (distancia del centro a la orilla). 0: angulo inicial (en radianes). 2 * Math.PI: angulo final (360g circulo completo)
+    context.closePath();
+    context.stroke();
+    context.fill();
+    context.restore();
+
+    // circulo blanco
+    context. save();
+    context. fillStyle = 'beige';
+    context. strokeStyle = 'Black';
+    context. lineWidth = 5;
+    context.beginPath();
+    context.arc(612, 415, 5, 0, 2 * Math.PI,); //centro del circulo (x=150, y=300) 29: radio (distancia del centro a la orilla). 0: angulo inicial (en radianes). 2 * Math.PI: angulo final (360g circulo completo)
+    context.closePath();
+    context.stroke();
+    context.fill();
+    context.restore();
+
+    //Medio curvo 1 hongo
+    context. save();
+    context. fillStyle = 'beige';
+    context. strokeStyle = 'Black';
+    context. lineWidth = 5;
+    context.beginPath();
+    context.arc(594.495, 430.5, 8.505, Math.PI, 0); //centro del circulo (x=150, y=300) 29: radio (distancia del centro a la orilla). 0: angulo inicial (en radianes). 2 * Math.PI: angulo final (360g circulo completo)
+    context.closePath();
+    context.stroke();
+    context.fill();
+    context.restore();
+
+     //Medio curvo 2 hongo
+    context. save();
+    context. fillStyle = 'beige';
+    context. strokeStyle = 'Black';
+    context. lineWidth = 5;
+    context.beginPath();
+    context.arc(628, 430.5, 7, Math.PI, 0); //centro del circulo (x=150, y=300) 29: radio (distancia del centro a la orilla). 0: angulo inicial (en radianes). 2 * Math.PI: angulo final (360g circulo completo)
+    context.closePath();
+    context.stroke();
+    context.fill();
+    context.restore();
+
+    //      Estrella 1
+    context.save();
+    context.lineWidth = 2.5;
+    context.strokeStyle = '#3D3D3D';
+    context.fillStyle='#EAC943';
+    context.beginPath();
+        
+    context.moveTo (365.45, 86.07); // posiciona el lugar de empiezo
+    context.lineTo(350.56, 105.19); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(328.46, 99.98);
+    context.lineTo(340, 120);
+    context.lineTo(328.71, 141.19);
+    context.lineTo(351.32, 134.36);
+    context.lineTo(365.45, 152.36);
+    context.lineTo(367.44, 128.03);
+    context.lineTo(388.54, 118.6);
+    context.lineTo(367.44, 110.4);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+     //      Estrella 2
+    context.save();
+    context.lineWidth = 2;
+    context.strokeStyle = '#3D3D3D';
+    context.fillStyle='#EAC943';
+    context.beginPath();
+        
+    context.moveTo (349.73, 143.18); // posiciona el lugar de empiezo
+    context.lineTo(343.77, 150.75); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(334.77, 148.64);
+    context.lineTo(339.79, 156.66);
+    context.lineTo(334.87, 164.97);
+    context.lineTo(343.82, 162.41);
+    context.lineTo(349.83, 169.7);
+    context.lineTo(350.37, 160.1);
+    context.lineTo(359.08, 156.21);
+    context.lineTo(350.47, 152.77);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //      Estrella 3
+    context.save();
+    context.lineWidth = 2;
+    context.strokeStyle = '#3D3D3D';
+    context.fillStyle='#EAC943';
+    context.beginPath();
+        
+    context.moveTo (391.85, 128.07); // posiciona el lugar de empiezo
+    context.lineTo(383.47, 138.63); //dibuja la linea desde el lugar de empiezo
+    context.lineTo(370.72, 135.66);
+    context.lineTo(377.79, 147.01);
+    context.lineTo(370.72, 158.88);
+    context.lineTo(383.55, 155.13);
+    context.lineTo(391.85, 165.43);
+    context.lineTo(392.81, 151.64);
+    context.lineTo(404.94, 146.31);
+    context.lineTo(392.81, 141.6);
+    context.closePath()
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    // Media luna
+    context.save();
+    context.fillStyle = '#EAC943'; 
+    context.strokeStyle = '#3D3D3D';
+    context.lineWidth = 3;
+
+    context.beginPath();
+    // arco afuera 
+    context.arc(450, 120, 30, Math.PI / 4, (Math.PI * 7) / 4, false);
+
+    // arco dentro
+    context.arc(460, 120, 22, (Math.PI * 7) / 4, Math.PI / 4, true);
+
+    context.closePath();
+    context.fill();
+    context.stroke();
+    context.restore();
+
+    //  PETALOS
+    context.fillStyle = '#FF69B4';
+    context.strokeStyle = 'black';
+    context.lineWidth = 2;
+
+    // P1 (arriba-izquierda)
+    context.beginPath();
+    context.arc(339.5, 433, 9, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    // P2 (arriba-derecha)
+    context.beginPath();
+    context.arc(360.5, 433, 9, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    // P 3 (izquierda)
+    context.beginPath();
+    context.arc(342, 445, 9, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    // P4 (derecha)
+    context.beginPath();
+    context.arc(358, 445, 9, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    // P5 (arriba-centro)
+    context.beginPath();
+    context.arc(350, 427, 9, 0, Math.PI * 2);
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    context.save();
+
+    // Centropp
+    context.fillStyle = '#FFD700';
+    context.strokeStyle = 'black';
+    context.lineWidth = 2;
+
+    context.beginPath();
+    context.arc(350, 437.5, 6.8, 0, Math.PI * 2); 
+    context.fill();
+    context.stroke();
+    context.closePath();
+
+    context.restore();
+
+    
+    };
+    </script>
+  </body>
+</html>
