@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Drawing App</title>
+    <style>
+        body{
+            text-align: center;
+            width: 100%;
+            background-color:#fedddb;
+        }
+        canvas{
+            background-color: white;
+             height: 590px;  
+             width: 900px; 
+             margin-top: 8px
+        }
+        .container{
+            margin: 0px auto;
+            text-align: center;
+            width: 1000px;
+        }
+        button{
+            width: 110px;
+            height: 50px;
+            margin: 5px;
+            border: none;      
+            border-radius: 20px;
+            font-family: helvetica;
+            font-weight: bold; 
+        }
+        button:hover{
+            opacity: 0.5;
+        }
+        #Wine{
+            background-color:#981f1f;
+            color: white;
+        }
+        #Purple{
+            background-color:#7d0084;
+            color: white;
+        }
+        #Blue {
+            background-color:#4444FF;
+            color: white;
+        }
+        #Salmon {
+            background-color:#f9821b;
+            color: white;
+        }
+        #Aqua {
+            background-color:#00B79B;
+            color: white;
+            
+        }
+        
+        #borrar{
+            width: 200px;
+            background-color:rgb(67, 67, 67);
+            color: white;
+        }
+
+        #stroke-thin {
+          background-color: #FFD700; 
+          color: black;
+        }
+
+        #stroke-medium {
+          background-color: #1E90FF; 
+          color: white;
+        }
+
+        #stroke-thick {
+          background-color: #FF4500; 
+          color: white;
+        }
+
+        .stroke-buttons {
+          position: fixed;
+          top: 85px;  
+          left: 185px;    
+          display: flex;
+          flex-direction: column; 
+          gap: 5px;       
+          z-index: 10;
+        }
+
+    </style>
+  </head>
+  <body>
+    <div id="container">
+        <div class="colores">
+            <button id="Wine" type="button" value="#981f1f">WINE</button>
+            <button id="Salmon" type="button" value="#f9821b">SALMON</button>
+            <button id="Purple" type="button" value="#7d0084">PURPLE</button>
+            <button id="Blue" type="button" value="#4444FF">BLUE</button> 
+            <button id="Aqua" type="button" value="#00B79B">AQUA</button> 
+            <button id="borrar" type="button">CLEAR ALL</button>
+            
+            <div class="stroke-buttons">
+            <button id="stroke-thin" type="button">THIN</button>
+            <button id="stroke-medium" type="button">MEDIUM</button>
+            <button id="stroke-thick" type="button">THICK</button>
+            </div>
+            
+        </div>
+        <canvas id="canvas" width="900px" height="590px"></canvas>
+    </div>
+        <script src="utils.js"></script>
+        <script>
+          window.onload = function () {
+        var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          mouse = utils.captureMouse(canvas);
+          context.lineJoin = 'round';
+          context.lineCap = 'round';
+          context.lineWidth = 2;
+
+        canvas.addEventListener('mousedown', function () {
+            context.beginPath();
+            context.moveTo(mouse.x, mouse.y);
+            canvas.addEventListener('mousemove', onMouseMove, false);
+        }, false);
+
+        canvas.addEventListener('mouseup', function () {
+            canvas.removeEventListener('mousemove', onMouseMove, false);
+        }, false);
+
+      function onMouseMove () {
+        context.lineTo(mouse.x, mouse.y);
+        context.stroke();
+      }
+
+      var colores = document.getElementsByClassName('colores')[0];
+      colores.addEventListener('click', function(event) {
+        context.strokeStyle = event.target.value;
+      });
+
+      var clearButton = document.getElementById('borrar');
+      clearButton.addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+      });
+
+      var strokeThin = document.getElementById('stroke-thin');
+      var strokeMedium = document.getElementById('stroke-medium');
+      var strokeThick = document.getElementById('stroke-thick');
+
+      strokeThin.addEventListener('click', function() {
+          context.lineWidth = 1; 
+      });
+
+      strokeMedium.addEventListener('click', function() {
+          context.lineWidth = 3; 
+      });
+
+      strokeThick.addEventListener('click', function() {
+          context.lineWidth = 6; 
+      });
+
+    };
+    </script>
+    <img src="tt.png" alt="Descripcion" width="280px"
+     style="position: fixed; bottom: 5px; left: 1235px;">
+     <img src="FF.png" alt="Descripcion" width="280px"
+     style="position: fixed; bottom: 5px; left: 15px;">
+     <img src="snopp.png" alt="Descripcion" width="250px"
+     style="position: fixed; top: 100px; left:650px">
+     <img src="sole.png" alt="Descripcion" width="145px"
+     style="position: fixed; top: 85px; left: 1290px;">
+    
+  </body>
+</html>
