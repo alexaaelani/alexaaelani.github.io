@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Simulación Reloj</title>
+    <style>
+        html, body {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center; /* centra horizontal */
+        align-items: center;     /* centra vertical */
+        background-color: #d4f1f2; /* opcional, color de fondo */
+        }
+        canvas { 
+            background-repeat: no-repeat;
+            display: block;
+        }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+
+    <script src="utils.js"></script>
+    <script src="./classes/arrow.js"></script>
+    <script>
+    window.onload = function () {
+      var canvas = document.getElementById('canvas'),
+          context = canvas.getContext('2d'),
+          //arrow = new Arrow(),
+          vr = .1; //degrees
+          var vrSeg = 6;      // vueltas segundos
+          var vrMin = 0.1;    // vueltas minutos
+          var vrHor = 0.0016; // vueltas horas
+
+          var minutero = new Image();
+          minutero.src = "horas.png";
+
+          var fondo = new Image();
+          fondo.src = "cara.png";
+  
+          var segundero = new Image();
+          segundero.src = "segundo.png"; // segundoos
+          var horario = new Image();
+          horario.src = "eldehoras.png"; // horasss
+
+          var radianes=0;
+          var radSeg = 0;
+          var radMin = 0;
+          var radHor = 0;
+
+      (function drawFrame () {
+        window.requestAnimationFrame(drawFrame, canvas);
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(fondo, 0, 0, canvas.width, canvas.height);
+        context.save();
+        context.translate(300, 300);
+        // segundos
+        context.save();
+        radSeg += vrSeg * Math.PI / 180;
+        context.rotate(radSeg);
+        context.drawImage(segundero, -segundero.width/2, -segundero.height/2);
+        context.restore();
+
+        // el de horas
+        context.save();
+        radHor += vrHor * Math.PI / 180;
+        context.rotate(radHor);
+        context.drawImage(horario, -horario.width/2, -horario.height/2);
+        context.restore();
+
+        //minutero
+        radianes += vr * Math.PI / 180; 
+        context.rotate(radianes); 
+        context.drawImage(minutero, -minutero.width/2, -minutero.height/2);
+        context.restore();
+
+       
+      
+      }());
+    };
+    </script>
+    <img src="mariposas.png" alt="Descripcion" width="450px"
+     style="position: fixed; bottom: 25px; right: 1000px; opacity: 0.9;">
+    <img src="mariposas.png" alt="Reflejo" width="450px"
+    style="position: fixed; bottom: 25px; right: 85px; transform: scaleX(-1); opacity: 0.9;">
+  </body>
+</html>
